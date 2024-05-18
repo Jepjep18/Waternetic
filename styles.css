@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.billing-statement {
+    border: 1px solid black;
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1, h2, h3, h4 {
+    color: #191970;
+}
+
+p {
+    margin: 5px 0;
+}
