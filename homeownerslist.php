@@ -1,3 +1,10 @@
+<?php
+	include('config.php');
+	include('session.php');
+	
+	$result=$conn->query("SELECT * FROM user WHERE id='".$_SESSION['session_id']."'");
+	$row = mysqli_fetch_array($result);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

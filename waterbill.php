@@ -2,6 +2,9 @@
 include('config.php');
 include('session.php');
 
+$result=$conn->query("SELECT * FROM user WHERE id='".$_SESSION['session_id']."'");
+	$row = mysqli_fetch_array($result);
+
 $userID = $_SESSION['session_id'];
 
 // Retrieve user information
@@ -79,6 +82,9 @@ $previousReadingDate = $row_previous_reading['previous_reading_date'] ?? '';
     </script>
 </head>
 <body>
+
+<?php include('includes/nav-user.php');?>
+
 <div class="container mt-5">
     <h2 class="text-center mb-4">Water Bill Form</h2>
     <form action="submitwaterconsumption.php" method="post" enctype="multipart/form-data">

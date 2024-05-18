@@ -2,6 +2,9 @@
 include('config.php');
 include('session.php');
 
+$result=$conn->query("SELECT * FROM user WHERE id='".$_SESSION['session_id']."'");
+	$row = mysqli_fetch_array($result);
+
 if(isset($_SESSION['session_id'])) {
     $result = $conn->query("SELECT * FROM user WHERE id='" . $_SESSION['session_id'] . "'");
     $row_user = mysqli_fetch_array($result);

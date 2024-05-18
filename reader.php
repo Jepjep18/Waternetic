@@ -27,7 +27,13 @@ $row = mysqli_fetch_array($result);
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     
-
+    <style>
+        .custom-logo {
+            width: 50px;
+            height: 50px;
+            /* Add any additional styles you need */
+        }
+    </style>
 
 </head>
 
@@ -42,7 +48,7 @@ $row = mysqli_fetch_array($result);
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                <img src="./assets/img/finallogo.png" alt="My Logo" class="custom-logo">
                 </div>
                 <div class="sidebar-brand-text mx-3">Water Meter  <sup>Reader</sup></div>
             </a>

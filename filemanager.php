@@ -1,17 +1,9 @@
 <?php
-// Replace with your database credentials
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "waternetic";
+include('config.php');
+include('session.php');
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+$result=$conn->query("SELECT * FROM user WHERE id='".$_SESSION['session_id']."'");
+$row = mysqli_fetch_array($result);
 
 // Function to get folders from the database
 function getFolders($conn) {
@@ -70,17 +62,39 @@ if (isset($_FILES['file']) && isset($_POST['folderSelect'])) {
 
 // Close the database connection
 $conn->close();
+
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Water Bill File Manager</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Homeowners' Dashboard</title>
+    <link href="image/finallogo.png" rel="icon">
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
 </head>
+
 <body>
+
+<?php include('includes/nav-user.php');?>
+
 
 <div class="container mt-5">
     <h2 class="mb-4">Water Bill File Manager</h2>
