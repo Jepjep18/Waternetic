@@ -1,6 +1,9 @@
 <?php
 include('config.php');
 include('session.php');
+	
+	$result=$conn->query("SELECT * FROM user WHERE id='".$_SESSION['session_id']."'");
+	$row = mysqli_fetch_array($result);
 
 $result = $conn->query("SELECT * FROM report_issue");
 ?>
@@ -41,6 +44,8 @@ $result = $conn->query("SELECT * FROM report_issue");
 </head>
 
 <body>
+<?php include('includes/nav-admin.php');?>
+
     <div class="container">
         <h1>Report issue request</h1>
         <table class="table table-striped">

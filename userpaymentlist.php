@@ -1,6 +1,9 @@
 <?php
 include('config.php');
-
+include('session.php');
+	
+	$result=$conn->query("SELECT * FROM user WHERE id='".$_SESSION['session_id']."'");
+	$row = mysqli_fetch_array($result);
 
 // Select all payments from the database
 $sql = "SELECT * FROM payment_services";
@@ -39,6 +42,8 @@ $result = $conn->query($sql);
 <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+<?php include('includes/nav-admin.php');?>
+
 <div class="container">
   <h1 class="my-3">User Payment List</h1>
   <table class="table table-bordered">
