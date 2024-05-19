@@ -42,6 +42,14 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
+    <style>
+        .custom-logo {
+            width: 30px; /* Adjust width as needed */
+            height: auto; /* Keeps aspect ratio */
+            margin-right: 10px; /* Space between logo and text */
+            vertical-align: middle; /* Aligns image with text */
+        }
+    </style>
 </head>
 
 <body>
@@ -58,8 +66,11 @@
     <div class="sidebar pe-4 pb-3">
         <nav class="navbar bg-light navbar-light">
 
-            <a href="index.html" class="navbar-brand mx-4 mb-3">
-                <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>OWNER</h3>
+        <a href="index.html" class="navbar-brand mx-4 mb-3">
+                <h3 class="text-primary">
+                    <img src="./assets/img/finallogo.png" alt="My Logo" class="custom-logo">
+                    OWNER
+                </h3>
             </a>
 
             <div class="d-flex align-items-center ms-4 mb-4">
@@ -105,9 +116,7 @@
                 </a>
 
                 
-                <a href="table.html" class="nav-item nav-link">
-                    <i class="fa fa-table me-2"></i>Materials
-                </a>
+                
                 
                 <a href="issue.php" class="nav-item nav-link">
                     <i class="fas fa-exclamation-circle me-2"></i>

@@ -1,62 +1,60 @@
+<?php
+	include('config.php');
+	include('session.php');
+	
+	$result=$conn->query("SELECT * FROM user WHERE id='".$_SESSION['session_id']."'");
+	$row = mysqli_fetch_array($result);
+?>
 <!DOCTYPE html>
 <html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
     <title>Manage Lots</title>
-    <!-- Bootstrap CSS -->
+    <link href="image/finallogo.png" rel="icon">
+
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
     <style>
-        /* Add any custom styles here */
+        .custom-logo {
+            width: 30px; /* Adjust width as needed */
+            height: auto; /* Keeps aspect ratio */
+            margin-right: 10px; /* Space between logo and text */
+            vertical-align: middle; /* Aligns image with text */
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-                <!-- Brand -->
-                <a class="navbar-brand" href="index.html">
-                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>OWNER</h3>
-                </a>
-
-                <!-- Toggle button -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Navbar links -->
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="managelots.php"><i class="fas fa-home me-2"></i>Manage Lots</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="residents.php"><i class="fas fa-users me-2"></i>View Residents</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="financial.php"><i class="fas fa-chart-line me-2"></i>Financials</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="request.php"><i class="fas fa-tools me-2"></i>Requests</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="documents.php"><i class="fas fa-file-alt me-2"></i>Documents</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="table.html"><i class="fa fa-table me-2"></i>Materials</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="issue.php"><i class="fas fa-exclamation-circle me-2"></i>Complain List</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
+    
+<?php include('includes/nav-admin.php');?>
+ 
         <!-- Content -->
         <div class="container mt-5">
             <h1 class="mb-4">Manage Lots</h1>

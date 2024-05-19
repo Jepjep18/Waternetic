@@ -177,9 +177,16 @@ $result = mysqli_fetch_array(mysqli_query($conn, $query));
 ?>
 
 <!-- Chart Start -->
+<style>
+    .custom-container {
+        width: 100%;
+        max-width: 1200px; /* Adjust the max-width as needed */
+        margin: 0 auto; /* Center the container */
+    }
+</style>
 <div class="container-fluid pt-4 px-4">
     <div class="row g-4">
-        <div class="col-sm-12 col-md-6 col-xl-4">
+        <div class="col-sm-12 col-md-6 col-xl-4 custom-container">
             <div class="h-100 bg-light rounded p-4">
                 <div class="container">
                     <div class="card mt-4">
@@ -191,58 +198,67 @@ $result = mysqli_fetch_array(mysqli_query($conn, $query));
                                 </div>
 
                                 <?php if ($result) : ?>
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label">ID:</label>
-                                        <input type="text" id="id" name="id" class="form-control" value="<?php echo $result['id']; ?>" readonly>
-                                    </div>
-                                    <div class="mb-3">
-                                        <label for="name" class="form-label">Name:</label>
-                                        <input type="text" id="name" name="name" class="form-control" value="<?php echo $result['firstname']; ?>" readonly>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="middle-name" class="form-label">Middle Name:</label>
-                                        <input type="text" id="middle-name" name="middle_name" class="form-control" value="<?php echo $result['middlename']; ?>" readonly>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="last-name" class="form-label">Last Name:</label>
-                                        <input type="text" id="last-name" name="last_name" class="form-control" value="<?php echo $result['lastname']; ?>" readonly>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="last-name" class="form-label">Type of Payments:</label>
-                                        <input type="text" id="bill_type" name="bill_type" class="form-control" value="<?php echo $result['bill_type']; ?>" readonly>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="block" class="form-label">Block:</label>
-                                        <input type="text" id="block" name="block" class="form-control" value="<?php echo $result['block']; ?>" readonly>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="lot" class="form-label">Lot:</label>
-                                        <input type="text" id="lot" name="lot" class="form-control" value="<?php echo $result['lot']; ?>" readonly>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="phase" class="form-label">Phase:</label>
-                                        <input type="text" id="phase" name="phase" class="form-control" value="<?php echo $result['phase']; ?>" readonly>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="amount" class="form-label">Amount :</label>
-                                        <input type="text" id="amount" name="amount" class="form-control" value="<?php echo $result['amount']; ?>" readonly>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="id" class="form-label">ID:</label>
+                                            <input type="text" id="id" name="id" class="form-control" value="<?php echo $result['id']; ?>" readonly>
                                         </div>
-                                        <?php endif; ?>
-                                        <input type="submit" value="Submit" class="btn btn-primary">
-                                </form>
-                            </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="name" class="form-label">Name:</label>
+                                            <input type="text" id="name" name="name" class="form-control" value="<?php echo $result['firstname']; ?>" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="middle-name" class="form-label">Middle Name:</label>
+                                            <input type="text" id="middle-name" name="middle_name" class="form-control" value="<?php echo $result['middlename']; ?>" readonly>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="last-name" class="form-label">Last Name:</label>
+                                            <input type="text" id="last-name" name="last_name" class="form-control" value="<?php echo $result['lastname']; ?>" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="bill_type" class="form-label">Type of Payments:</label>
+                                            <input type="text" id="bill_type" name="bill_type" class="form-control" value="<?php echo $result['bill_type']; ?>" readonly>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="block" class="form-label">Block:</label>
+                                            <input type="text" id="block" name="block" class="form-control" value="<?php echo $result['block']; ?>" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="lot" class="form-label">Lot:</label>
+                                            <input type="text" id="lot" name="lot" class="form-control" value="<?php echo $result['lot']; ?>" readonly>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="phase" class="form-label">Phase:</label>
+                                            <input type="text" id="phase" name="phase" class="form-control" value="<?php echo $result['phase']; ?>" readonly>
+                                        </div>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="amount" class="form-label">Amount:</label>
+                                        <input type="text" id="amount" name="amount" class="form-control" value="<?php echo $result['amount']; ?>" readonly>
+                                    </div>
+                                <?php endif; ?>
+
+                                <input type="submit" value="Submit" class="btn btn-primary">
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<!-- Chart End -->
+
 
 
 
