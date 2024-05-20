@@ -70,7 +70,8 @@
           exit;
         }
 
-        $sql = "SELECT id, firstname, middlename, lastname, bill_type, block, lot, phase, amount, real_timestamp, status FROM payment_services ORDER BY status ASC";
+        $sql = "SELECT id, firstname, middlename, lastname, bill_type, block, lot, phase, amount, real_timestamp, status 
+        FROM payment_services WHERE status = 0 ORDER BY status ASC";
         $result = mysqli_query($conn, $sql);
 
         // Output data from each row

@@ -18,6 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $amount = isset($_POST['amount']) ? $_POST['amount'] : '';
         $mode_of_payment = isset($_POST['mode_of_payment']) ? $_POST['mode_of_payment'] : '';
 
+        
+                // Ensure the amount is 1000 if the bill type is installation
+                if ($bill_type === 'installation') {
+                    $amount = '1000';
+                }
+        
         // Handle file upload
         $upload_dir = "upload/";
         $uploaded_file = $upload_dir . basename($_FILES["upload_image"]["name"]);

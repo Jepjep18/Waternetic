@@ -10,7 +10,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Cashier's Dashboard </title>
+    <title>Cashier's Dashboard</title>
     <link href="image/finallogo.png" rel="icon">
 
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -40,6 +40,14 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
+    <style>
+        .custom-logo {
+            width: 30px; /* Adjust width as needed */
+            height: auto; /* Keeps aspect ratio */
+            margin-right: 10px; /* Space between logo and text */
+            vertical-align: middle; /* Aligns image with text */
+        }
+    </style>
 </head>
 
 <body>
@@ -56,9 +64,12 @@
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
-                <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>DASHMIN</h3>
-                </a>
+            <a href="index.html" class="navbar-brand mx-4 mb-3">
+                <h3 class="text-primary">
+                    <img src="./assets/img/finallogo.png" alt="My Logo" class="custom-logo">
+                    CASHIER
+                </h3>
+            </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
                         <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
