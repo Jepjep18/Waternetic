@@ -87,7 +87,7 @@ if(isset($_SESSION['session_id'])) {
             <div class="modal-body" id="modalBody">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Done</button>
             </div>
         </div>
     </div>

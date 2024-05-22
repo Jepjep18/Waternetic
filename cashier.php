@@ -81,7 +81,7 @@
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="index.html" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="cashier.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     
                     <a href="cashierlist.php" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Payment List</a>
                     

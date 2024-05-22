@@ -17,7 +17,7 @@ if(isset($_SESSION['session_id'])) {
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Water Bill Form</title>
+  <title>Calculator History</title>
   <link href="image/finallogo.png" rel="icon">
 
   <!-- Bootstrap 5 CSS -->
@@ -239,43 +239,45 @@ if(isset($_SESSION['session_id'])) {
 </nav>
 
 <div class="container">
-  <h2>Calculator History</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        
-        <th>Previous Reading</th>
-        <th>Present Reading</th>
-        <th>Previous Reading Date</th>
-        <th>Present Reading Date</th>
-        <th>Total Water Consumption</th>
-        <th>Calculation Date</th>
-      </tr>
-    </thead>
-    <tbody>
-      <?php
-      $history_query = "SELECT * FROM calculator_history";
-      $history_result = mysqli_query($conn, $history_query);
-      if (mysqli_num_rows($history_result) > 0) {
-        while($history_row = mysqli_fetch_assoc($history_result)) {
-          echo "<tr>";
-          
-          echo "<td>".$history_row['previous_reading']."</td>";
-          echo "<td>".$history_row['present_reading']."</td>";
-          echo "<td>".$history_row['previous_reading_date']."</td>";
-          echo "<td>".$history_row['present_reading_date']."</td>";
-          echo "<td>".$history_row['total_water_consumption']."</td>";
-          echo "<td>".$history_row['calculation_date']."</td>";
-          echo "</tr>";
-        }
-      } else {
-        echo "<tr><td colspan='8'>No history found</td></tr>";
-      }
-      ?>
-    </tbody>
-  </table>
-</div>
+    <h2>Calculator History</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Previous Reading</th>
+                <th>Present Reading</th>
+                <th>Previous Reading Date</th>
+                <th>Present Reading Date</th>
+                <th>Total Water Consumption</th>
+                <th>Calculation Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            // Assuming you have a session variable or some way to identify the logged-in user
+            $user_id = $_SESSION['session_id'];
 
+            // Modify the SQL query to include the user_id condition
+            $history_query = "SELECT * FROM calculator_history WHERE user_id = '$user_id'";
+            $history_result = mysqli_query($conn, $history_query);
+
+            if (mysqli_num_rows($history_result) > 0) {
+                while ($history_row = mysqli_fetch_assoc($history_result)) {
+                    echo "<tr>";
+                    echo "<td>" . $history_row['previous_reading'] . "</td>";
+                    echo "<td>" . $history_row['present_reading'] . "</td>";
+                    echo "<td>" . $history_row['previous_reading_date'] . "</td>";
+                    echo "<td>" . $history_row['present_reading_date'] . "</td>";
+                    echo "<td>" . $history_row['total_water_consumption'] . "</td>";
+                    echo "<td>" . $history_row['calculation_date'] . "</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='6'>No history found</td></tr>";
+            }
+            ?>
+        </tbody>
+    </table>
+</div>
 
 
 
