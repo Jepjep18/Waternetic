@@ -39,8 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($stmt->execute()) {
         // Prepare the SQL statement for notification
         $notification_message = "Payment of ₱ $amount has been received for OR Number: $orNumber.";
-        $notification_stmt = $conn->prepare("INSERT INTO notifications (user_id, message) VALUES (?, ?)");
-        $notification_stmt->bind_param("is", $id, $notification_message);
+        $notification_stmt = $conn->prepare("INSERT INTO notifications (user_id, bill_type, message) VALUES (?, ?, ?)");
+        $notification_stmt->bind_param("iss", $id, $bill_type, $notification_message);
         $notification_stmt->execute();
         
         header("Location: cashierlist.php");

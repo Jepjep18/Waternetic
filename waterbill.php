@@ -2,8 +2,8 @@
 include('config.php');
 include('session.php');
 
-$result=$conn->query("SELECT * FROM user WHERE id='".$_SESSION['session_id']."'");
-	$row = mysqli_fetch_array($result);
+$result = $conn->query("SELECT * FROM user WHERE id='" . $_SESSION['session_id'] . "'");
+$row = mysqli_fetch_array($result);
 
 $userID = $_SESSION['session_id'];
 
@@ -69,25 +69,43 @@ $previousReadingDate = $row_previous_reading['previous_reading_date'] ?? '';
         }
     </style>
 
-    <script>
-        function calculateWaterConsumption() {
-            var previous_reading = parseInt(document.getElementById("previous_reading").value);
-            var present_reading = parseInt(document.getElementById("present_reading").value);
+<script>
+    function calculateWaterConsumption() {
+        var previous_reading = parseInt(document.getElementById("previous_reading").value);
+        var present_reading = parseInt(document.getElementById("present_reading").value);
 
-            if (!isNaN(previous_reading) && !isNaN(present_reading)) {
-                var totalWaterConsumption = present_reading - previous_reading;
-                document.getElementById("totalWaterConsumption").value = totalWaterConsumption;
-            }
+        if (!isNaN(previous_reading) && !isNaN(present_reading)) {
+            var totalWaterConsumption = present_reading - previous_reading;
+            document.getElementById("totalWaterConsumption").value = totalWaterConsumption;
+
+            // Send the form data to save_calculation.php using AJAX
+            var formData = new FormData(document.getElementById("waterBillForm"));
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == XMLHttpRequest.DONE) {
+                    if (xhr.status == 200) {
+                        // Display success message or handle response as needed
+                        alert(xhr.responseText);
+                    } else {
+                        // Display error message or handle error as needed
+                        alert("Error: " + xhr.responseText);
+                    }
+                }
+            };
+            xhr.open("POST", "save_calculation.php", true);
+            xhr.send(formData);
         }
-    </script>
+    }
+</script>
+
 </head>
 <body>
 
-<?php include('includes/nav-user.php');?>
+<?php include('includes/nav-user.php'); ?>
 
 <div class="container mt-5">
     <h2 class="text-center mb-4">Water Bill Form</h2>
-    <form action="submitwaterconsumption.php" method="post" enctype="multipart/form-data">
+    <form id="waterBillForm" action="submitwaterconsumption.php" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
@@ -161,48 +179,34 @@ $previousReadingDate = $row_previous_reading['previous_reading_date'] ?? '';
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="present_reading_date">Present Reading Date:</label>
-                    <input type="text" id="present_reading_date" name="present_reading_date" class="form-control"
-                           value="<?php echo date('Y-m-d'); ?>" readonly>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="totalWaterConsumption">Total Water Consumption (in gallons):</label>
-                    <input type="text" id="totalWaterConsumption" name="totalWaterConsumption" class="form-control"
-                           readonly>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="waterBillFile">Upload Water Bill (PDF, Image, etc.):</label>
-                    <input type="file" name="file" class="form-control" id="waterBillFile">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <button type="button" class="btn btn-primary" onclick="calculateWaterConsumption()">Calculate</button>
-                <br>
-                <br>
-                <button type="submit" class="btn btn-primary" formaction="submitwaterconsumption.php">Submit</button>
-            </div>
-        </div>
-    </form>
-    <script>
-        document.getElementById("myForm").addEventListener("submit", function (event) {
-            // Prevent the default form submission
-            event.preventDefault();
-
-            // Display a success message
-            alert("Submit successful");
-
-            // Submit the form
-            this.submit();
-        });
-    </script>
+                    <input type="text"id="present_reading_date" name="present_reading_date" class="form-control"
+value="<?php echo date('Y-m-d'); ?>" readonly>
 </div>
-
+</div>
+<div class="col-md-4">
+<div class="form-group">
+<label for="totalWaterConsumption">Total Water Consumption (in gallons):</label>
+<input type="text" id="totalWaterConsumption" name="totalWaterConsumption" class="form-control"
+                        readonly>
+</div>
+</div>
+</div>
+<div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="waterBillFile">Upload Water Bill (PDF, Image, etc.):</label>
+                <input type="file" name="file" class="form-control" id="waterBillFile">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <button type="button" class="btn btn-primary" onclick="calculateWaterConsumption()">Calculate</button>
+            <br>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
+</div>
 <!-- Bootstrap 5 JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

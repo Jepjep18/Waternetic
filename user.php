@@ -89,11 +89,19 @@
 
 
 <li class="nav-item">
-    <a class="nav-link" href="transactionhistory.php">
+    <a class="nav-link" href="calculator_history.php">
         <i class="fas fa-fw fa-history"></i>
+        <span>Calculator History</span>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a class="nav-link" href="transactionhistory.php">
+        <i class="fas fa-fw fa-list-alt"></i>
         <span>Transaction History</span>
     </a>
 </li>
+
 
 
 <li class="nav-item">
@@ -186,17 +194,21 @@
                 Alerts Center
             </h6>
             <?php
-                $sql = "SELECT message, created_at FROM notifications";
+                $sql = "SELECT message, bill_type, created_at FROM notifications";
                 $result = $conn->query($sql);
-                
+
                 // Display notifications
                 if ($result->num_rows > 0) {
                     // Output data of each row
                     while($row = $result->fetch_assoc()) {
-                        echo '<a class="dropdown-item" href="#">' . $row["message"] . '<span class="small text-gray-500 ml-auto">' . $row["created_at"] . '</span></a>';
+                        echo '<a class="dropdown-item" href="#">';
+                        echo 'Your payment for "' . $row["bill_type"] . '" - ' . $row["message"];
+                        echo '<span class="small text-gray-500 ml-auto">' . $row["created_at"] . '</span>';
+                        echo '</a>';
                     }
                 }
-            ?>
+                ?>
+
 
             <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
         </div>
