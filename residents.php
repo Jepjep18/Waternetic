@@ -4,6 +4,10 @@
 	
 	$result=$conn->query("SELECT * FROM user WHERE id='".$_SESSION['session_id']."'");
 	$row = mysqli_fetch_array($result);
+
+     // Query to select users with usertype = 'user' and fetch required columns
+     $query = "SELECT firstname, middlename, lastname, block, lot, phase FROM user WHERE usertype = 'user'";
+     $result = mysqli_query($conn, $query);
 ?>
 <head>
     <meta charset="utf-8">
@@ -49,14 +53,47 @@
 <body>
 <?php include('includes/nav-admin.php');?>
 
-    <div class="container">
+<div class="container">
         <!-- Navigation -->
-
         <!-- Content -->
         <div class="container mt-5">
             <h1 class="mb-4">View Residents</h1>
-            <p>This page allows you to view residents currently residing in the subdivision along with their contact information and any relevant details.</p>
-            <!-- Add any specific content related to viewing residents -->
+            <!-- Display user data in a table -->
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>First Name</th>
+                            <th>Middle Name</th>
+                            <th>Last Name</th>
+                            <th>Block</th>
+                            <th>Lot</th>
+                            <th>Phase</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        // Check if any users are found
+                        if (mysqli_num_rows($result) > 0) {
+                            // Loop through each user and display their data
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                echo "<tr>";
+                                echo "<td>" . $row['firstname'] . "</td>";
+                                echo "<td>" . $row['middlename'] . "</td>";
+                                echo "<td>" . $row['lastname'] . "</td>";
+                                echo "<td>" . $row['block'] . "</td>";
+                                echo "<td>" . $row['lot'] . "</td>";
+                                echo "<td>" . $row['phase'] . "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            // If no users are found, display a message
+                            echo "<tr><td colspan='6'>No residents found</td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 

@@ -89,10 +89,7 @@
             <div class="navbar-nav w-100">
                 <a href="owner.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                 
-                <a href="managelots.php" class="nav-item nav-link">
-                    <i class="fas fa-home me-2"></i> 
-                    Manage Lots
-                </a>
+                
 
                 <a href="residents.php" class="nav-item nav-link">
                     <i class="fas fa-users me-2"></i> 
@@ -103,17 +100,7 @@
                     <i class="fas fa-chart-line me-2"></i>Financials
                 </a>
 
-                <a href="request.php" class="nav-item nav-link">
-                    <i class="fas fa-tools me-2"></i> 
-                    Requests
-                </a>
-
-
-                                
-                                <a href="documents.php" class="nav-item nav-link">
-                    <i class="fas fa-file-alt me-2"></i> 
-                    Documents
-                </a>
+                
 
                 
                 

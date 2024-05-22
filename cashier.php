@@ -85,6 +85,7 @@
                     
                     <a href="cashierlist.php" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Payment List</a>
                     
+                    <a href="generate_report.php" class="nav-item nav-link"><i class="fas fa-file-alt me-2"></i>Generate Report</a>
                 </div>
             </nav>
         </div>

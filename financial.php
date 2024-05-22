@@ -4,6 +4,18 @@
 	
 	$result=$conn->query("SELECT * FROM user WHERE id='".$_SESSION['session_id']."'");
 	$row = mysqli_fetch_array($result);
+
+    $query = "SELECT * FROM financial_reports";
+$result = mysqli_query($conn, $query);
+
+// Check if there are any rows returned
+if (mysqli_num_rows($result) > 0) {
+    // Fetch all rows and store them in $financial_reports_result
+    $financial_reports_result = mysqli_fetch_all($result, MYSQLI_ASSOC);
+} else {
+    // If no rows are returned, set $financial_reports_result to an empty array
+    $financial_reports_result = [];
+}
 ?>
 <head>
     <meta charset="utf-8">
@@ -54,10 +66,38 @@
 
         <!-- Content -->
         <div class="container mt-5">
-            <h1 class="mb-4">Financials</h1>
-            <p>This page provides financial information related to the subdivision, such as budgeting, expenses, and revenue.</p>
-            <!-- Add any specific content related to financial information -->
-        </div>
+    <h1 class="mb-4">Financials</h1>
+    <!-- Display financial reports data in a table -->
+    <div class="table-responsive">
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Bill Type</th>
+            <th>File Name</th>
+            <th>Upload Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        // Check if financial_reports_result is set and not empty
+        if (isset($financial_reports_result) && !empty($financial_reports_result)) {
+            foreach ($financial_reports_result as $report_row) {
+                echo "<tr>";
+                echo "<td>" . $report_row['bill_type'] . "</td>";
+                // Add a link to download the file
+                echo "<td><a href='download.php?filename=" . urlencode($report_row['file_name']) . "'>" . $report_row['file_name'] . "</a></td>";
+                echo "<td>" . $report_row['upload_date'] . "</td>";
+                echo "</tr>";
+            }
+        } else {
+            echo "<tr><td colspan='3'>No financial reports found</td></tr>";
+        }
+        ?>
+    </tbody>
+</table>
+
+    </div>
+</div>
     </div>
 
     <!-- Bootstrap JS -->
