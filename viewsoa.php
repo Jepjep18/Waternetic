@@ -96,7 +96,6 @@ if (isset($_GET['user_id'])) {
 <body>
 <div class="container">
     <?php if ($row): ?>
-        <form action="submit_soa.php" method="post">
             <h1>LS Properties Inc</h1>
             <p>Don Lorenzo Homes Phase 2, Upper Piedad Toril, Davao City</p>
             <hr>
@@ -126,7 +125,10 @@ if (isset($_GET['user_id'])) {
             <input type="hidden" name="statement_date" value="<?php echo date('Y-m-d'); ?>">
 
             <button onclick="window.print()">Print</button>
-            <button type="submit">Submit</button>
+            <!-- Pass total_due as a URL parameter to paymentservices.php -->
+            <a href="paymentservices1.php?total_due=<?php echo $totalDue; ?>">
+                <button type="button">Pay</button>
+            </a>        
         </form>
     <?php else: ?>
         <p>No data found for the provided user ID.</p>

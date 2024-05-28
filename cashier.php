@@ -82,10 +82,17 @@
                 </div>
                 <div class="navbar-nav w-100">
                     <a href="cashier.php" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+
+                    <a href="generate_soa.php" class="nav-item nav-link">
+                        <i class="fa fa-file-alt me-2"></i>Generate SoA
+                    </a>
+
                     
                     <a href="cashierlist.php" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Payment List</a>
                     
                     <a href="generate_report.php" class="nav-item nav-link"><i class="fas fa-file-alt me-2"></i>Generate Report</a>
+
+                    
                 </div>
             </nav>
         </div>
