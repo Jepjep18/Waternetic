@@ -111,18 +111,18 @@ if (isset($_GET['user_id'])) {
             <p class="name">Delivery Date: <?php echo date('Y-m-d'); ?></p>
             <hr>
             <!-- Display present and previous reading -->
-            <p>Present Reading: <?php echo isset($presentReading) ? htmlspecialchars($presentReading) : 'N/A'; ?></p>
-            <p>Previous Reading: <?php echo isset($previousReading) ? htmlspecialchars($previousReading) : 'N/A'; ?></p>
+            <p>Present Reading: <?php echo isset($presentReading) ? number_format($presentReading, 2) : 'N/A'; ?></p>
+            <p>Previous Reading: <?php echo isset($previousReading) ? number_format($previousReading, 2) : 'N/A'; ?></p>
             <!-- Display calculated total water consumption and total amount due -->
-            <p>Actual Consumption: <?php echo isset($consumption) ? htmlspecialchars($consumption) : 'N/A'; ?></p>
+            <p>Actual Consumption: <?php echo isset($consumption) ? number_format($consumption, 2) : 'N/A'; ?></p>
             <p>Total Amount Due: Php <?php echo isset($totalDue) ? number_format($totalDue, 2) : 'N/A'; ?></p>
 
             <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
-            <input type="hidden" name="present_reading" value="<?php echo htmlspecialchars($presentReading); ?>">
-            <input type="hidden" name="previous_reading" value="<?php echo htmlspecialchars($previousReading); ?>">
-            <input type="hidden" name="consumption" value="<?php echo htmlspecialchars($consumption); ?>">
-            <input type="hidden" name="rate" value="<?php echo htmlspecialchars($rate); ?>">
-            <input type="hidden" name="total_due" value="<?php echo htmlspecialchars($totalDue); ?>">
+            <input type="hidden" name="present_reading" value="<?php echo htmlspecialchars(number_format($presentReading, 2)); ?>">
+            <input type="hidden" name="previous_reading" value="<?php echo htmlspecialchars(number_format($previousReading, 2)); ?>">
+            <input type="hidden" name="consumption" value="<?php echo htmlspecialchars(number_format($consumption, 2)); ?>">
+            <input type="hidden" name="rate" value="<?php echo htmlspecialchars(number_format($rate, 2)); ?>">
+            <input type="hidden" name="total_due" value="<?php echo htmlspecialchars(number_format($totalDue, 2)); ?>">
             <input type="hidden" name="statement_date" value="<?php echo date('Y-m-d'); ?>">
 
             <button onclick="window.print()">Print</button>

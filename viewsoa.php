@@ -60,6 +60,7 @@ if (isset($_GET['user_id'])) {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Your head content here -->
     <meta charset="UTF-8">
@@ -78,7 +79,8 @@ if (isset($_GET['user_id'])) {
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #f8f9fc; /* Optional background color */
+            background-color: #f8f9fc;
+            /* Optional background color */
         }
 
         .container {
@@ -88,14 +90,16 @@ if (isset($_GET['user_id'])) {
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
+
         .name {
             text-align: justify;
         }
     </style>
 </head>
+
 <body>
-<div class="container">
-    <?php if ($row): ?>
+    <div class="container">
+        <?php if ($row) : ?>
             <h1>LS Properties Inc</h1>
             <p>Don Lorenzo Homes Phase 2, Upper Piedad Toril, Davao City</p>
             <hr>
@@ -110,11 +114,11 @@ if (isset($_GET['user_id'])) {
             <p class="name">Delivery Date: <?php echo date('Y-m-d'); ?></p>
             <hr>
             <!-- Display present and previous reading -->
-            <p>Present Reading: <?php echo isset($presentReading) ? htmlspecialchars($presentReading) : 'N/A'; ?></p>
-            <p>Previous Reading: <?php echo isset($previousReading) ? htmlspecialchars($previousReading) : 'N/A'; ?></p>
+            <p>Present Reading: <?php echo isset($presentReading) ? htmlspecialchars($presentReading) . ' m³' : 'N/A'; ?></p>
+            <p>Previous Reading: <?php echo isset($previousReading) ? htmlspecialchars($previousReading) . ' m³' : 'N/A'; ?></p>
             <!-- Display calculated total water consumption and total amount due -->
-            <p>Actual Consumption: <?php echo isset($consumption) ? htmlspecialchars($consumption) : 'N/A'; ?></p>
-            <p>Total Amount Due: Php <?php echo isset($totalDue) ? number_format($totalDue, 2) : 'N/A'; ?></p>
+            <p>Actual Consumption: <?php echo isset($consumption) ? htmlspecialchars($consumption) . ' m³' : 'N/A'; ?></p>
+            <p>Total Amount Due: ₱<?php echo isset($totalDue) ? number_format($totalDue, 2) : 'N/A'; ?></p>
 
             <input type="hidden" name="user_id" value="<?php echo $user_id; ?>">
             <input type="hidden" name="present_reading" value="<?php echo htmlspecialchars($presentReading); ?>">
@@ -128,12 +132,13 @@ if (isset($_GET['user_id'])) {
             <!-- Pass total_due as a URL parameter to paymentservices.php -->
             <a href="paymentservices1.php?total_due=<?php echo $totalDue; ?>">
                 <button type="button">Pay</button>
-            </a>        
-        </form>
-    <?php else: ?>
-        <p>No data found for the provided user ID.</p>
-    <?php endif; ?>
-</div>
+            </a>
+        <?php else : ?>
+            <p>No data found for the provided user ID.</p>
+        <?php endif; ?>
+    </div>
+
 
 </body>
+
 </html>

@@ -18,13 +18,13 @@ $statement_result = $statement_stmt->get_result();
 $statement_row = $statement_result->fetch_assoc();
 $statement_total_due = $statement_row['total_due'];
 
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
     // Update the status to 1 in the statement_of_account table
     $update_query = "UPDATE statement_of_account SET status = 1 WHERE user_id = ?";
     $update_stmt = $conn->prepare($update_query);
     $update_stmt->bind_param("i", $_SESSION['session_id']);
-    
-    if($update_stmt->execute()) {
+
+    if ($update_stmt->execute()) {
         // Status updated successfully
         // You can add any additional logic or redirection here
         echo "Payment successful! Status updated.";
@@ -32,7 +32,7 @@ if(isset($_POST['submit'])) {
         // Error occurred while updating status
         echo "Error: " . $update_stmt->error;
     }
-    
+
     $update_stmt->close();
 }
 ?>
@@ -302,7 +302,7 @@ if(isset($_POST['submit'])) {
                                 <label for="amount" class="form-label">Amount</label>
                                 <div class="input-group">
                                     <span class="input-group-text">₱</span>
-                                    <input type="text" class="form-control" id="amount" name="amount" value="<?php echo $total_due ? $total_due : $statement_total_due; ?>" readonly>
+                                    <input type="text" class="form-control" value="<?php echo number_format($statement_total_due, 2, '.', ','); ?>" readonly>
                                 </div>
                             </div>
 

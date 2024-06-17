@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2024 at 07:01 PM
+-- Generation Time: Jun 07, 2024 at 12:02 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -301,7 +301,9 @@ INSERT INTO `payment_services` (`id`, `customer_id`, `bill_type`, `firstname`, `
 (41, 101, 'installation', 'test', 'test', 'test', '1', '1', '1', '1000.00', '2024-05-22 15:17:04', 0, 'GCash', 'upload/download (1).jpg'),
 (42, 101, 'installation', 'test', 'test', 'test', '1', '1', '1', '1000.00', '2024-05-22 15:19:16', 0, 'GCash', 'upload/download (1).jpg'),
 (43, 101, 'installation', 'test', 'test', 'test', '1', '1', '1', '1000.00', '2024-05-22 15:21:24', 1, 'GCash', 'upload/download (1).jpg'),
-(44, 101, 'water_bill', 'test', 'test', 'test', '1', '1', '1', '478.00', '2024-05-22 15:41:19', 0, 'GCash', 'upload/download (1).jpg');
+(44, 101, 'water_bill', 'test', 'test', 'test', '1', '1', '1', '478.00', '2024-05-22 15:41:19', 0, 'GCash', 'upload/download (1).jpg'),
+(45, 62, 'water_bill', 'Mary Jean', 'Balili', 'Arnado', '2', '11', '2', '1128.00', '2024-05-28 05:08:36', 0, 'GCash', 'upload/it girl.jpg'),
+(46, 62, 'water_bill', 'Mary Jean', 'Balili', 'Arnado', '2', '11', '2', '1128.00', '2024-05-28 05:14:25', 0, 'GCash', 'upload/Tulips ♥.jpg');
 
 -- --------------------------------------------------------
 
@@ -372,38 +374,24 @@ INSERT INTO `required_materials` (`id`, `customer_id`, `name_of_materials`, `num
 
 CREATE TABLE `statement_of_account` (
   `id` int(11) NOT NULL,
-  `firstname` varchar(50) DEFAULT NULL,
-  `middlename` varchar(50) DEFAULT NULL,
-  `lastname` varchar(50) DEFAULT NULL,
-  `block` varchar(10) DEFAULT NULL,
-  `lot` varchar(10) DEFAULT NULL,
-  `phase` varchar(10) DEFAULT NULL,
-  `present_reading` decimal(10,2) DEFAULT NULL,
-  `previous_reading` decimal(10,2) DEFAULT NULL,
-  `present_reading_date` date DEFAULT NULL,
-  `previous_reading_date` date DEFAULT NULL,
-  `delivery_date` date DEFAULT NULL,
-  `actual_consumption` decimal(10,2) DEFAULT NULL,
-  `total_amount_due` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+  `user_id` int(11) NOT NULL,
+  `present_reading` float NOT NULL,
+  `previous_reading` float NOT NULL,
+  `consumption` float NOT NULL,
+  `rate` float NOT NULL,
+  `total_due` float NOT NULL,
+  `statement_date` date NOT NULL,
+  `status` varchar(50) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `statement_of_account`
 --
 
-INSERT INTO `statement_of_account` (`id`, `firstname`, `middlename`, `lastname`, `block`, `lot`, `phase`, `present_reading`, `previous_reading`, `present_reading_date`, `previous_reading_date`, `delivery_date`, `actual_consumption`, `total_amount_due`) VALUES
-(4, 'user', 'user', 'user', '2', '11', '2', '3300.00', '3250.00', '2024-02-20', '2024-02-20', '0000-00-00', '50.00', '1520.00'),
-(5, 'user', 'user', 'user', '2', '11', '2', '3300.00', '3250.00', '2024-02-20', '2024-02-20', '0000-00-00', '50.00', '1520.00'),
-(6, 'user', 'user', 'user', '2', '11', '2', '3300.00', '3250.00', '2024-02-20', '2024-02-20', '0000-00-00', '50.00', '1520.00'),
-(7, 'user', 'user', 'user', '2', '11', '2', '3300.00', '3250.00', '2024-02-20', '2024-02-20', '0000-00-00', '50.00', '1520.00'),
-(8, 'user', 'user', 'user', '2', '11', '2', '3300.00', '3250.00', '2024-02-20', '2024-02-20', '0000-00-00', '50.00', '1520.00'),
-(9, 'user', 'user', 'user', '2', '11', '2', '3300.00', '3250.00', '2024-02-20', '2024-02-20', '0000-00-00', '50.00', '1520.00'),
-(10, 'user', 'user', 'user', '2', '11', '2', '3300.00', '3250.00', '2024-02-20', '2024-02-20', '0000-00-00', '50.00', '1520.00'),
-(11, 'user', 'user', 'user', '2', '11', '2', '3300.00', '3250.00', '2024-02-20', '2024-02-20', '0000-00-00', '50.00', '1520.00'),
-(12, 'user', 'user', 'user', '2', '11', '2', '3300.00', '3250.00', '2024-02-20', '2024-02-20', '0000-00-00', '50.00', '1520.00'),
-(13, 'user', 'user', 'user', '2', '11', '2', '0.00', '0.00', '2024-02-20', '2024-02-20', '0000-00-00', '0.00', '0.00'),
-(14, 'user', 'user', 'user', '2', '11', '2', '3300.00', '3250.00', '2024-02-21', '2024-02-21', '0000-00-00', '50.00', '1520.00'),
-(15, 'user', 'user', 'user', '2', '11', '2', '3300.00', '3250.00', '2024-02-28', '2024-02-28', '0000-00-00', '50.00', '1520.00');
+INSERT INTO `statement_of_account` (`id`, `user_id`, `present_reading`, `previous_reading`, `consumption`, `rate`, `total_due`, `statement_date`, `status`) VALUES
+(1, 1, 5020, 5000, 20, 23.9, 478, '2024-05-28', '0'),
+(2, 62, 2420, 2380, 40, 28.2, 1128, '2024-05-28', '0'),
+(3, 62, 2420, 2380, 40, 28.2, 1128, '2024-05-28', '0');
 
 -- --------------------------------------------------------
 
@@ -627,7 +615,8 @@ ALTER TABLE `required_materials`
 -- Indexes for table `statement_of_account`
 --
 ALTER TABLE `statement_of_account`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `updated_materials`
@@ -716,7 +705,7 @@ ALTER TABLE `or_details`
 -- AUTO_INCREMENT for table `payment_services`
 --
 ALTER TABLE `payment_services`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `report_issue`
@@ -734,7 +723,7 @@ ALTER TABLE `required_materials`
 -- AUTO_INCREMENT for table `statement_of_account`
 --
 ALTER TABLE `statement_of_account`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `updated_materials`
@@ -787,6 +776,12 @@ ALTER TABLE `files`
 --
 ALTER TABLE `required_materials`
   ADD CONSTRAINT `required_materials_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `user` (`id`);
+
+--
+-- Constraints for table `statement_of_account`
+--
+ALTER TABLE `statement_of_account`
+  ADD CONSTRAINT `statement_of_account_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `water_consumption`

@@ -306,8 +306,8 @@ if (isset($_GET['id'])) {
               <label for="amount" class="form-label">Amount</label>
               <div class="input-group">
                 <span class="input-group-text">₱</span>
-                <input type="text" class="form-control" id="amount" name="amount">
-              </div>
+                <input type="text" class="form-control" id="amount" name="amount" onkeyup="formatCurrency(this);">
+                </div>
             </div>
 
             <div class="mb-3">
@@ -363,6 +363,22 @@ if (isset($_GET['id'])) {
     updateAmount();
   });
 </script>
+<script>
+function formatCurrency(input) {
+    // Remove existing commas and non-numeric characters
+    var value = input.value.replace(/,/g, '').replace(/\D/g, '');
+
+    // Format the number with commas
+    value = parseFloat(value).toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+
+    // Update the input value
+    input.value = value;
+}
+</script>
+
 
 
 
