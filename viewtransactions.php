@@ -85,8 +85,8 @@
             echo "<td>" . $row["block"] . "</td>";
             echo "<td>" . $row["lot"] . "</td>";
             echo "<td>" . $row["phase"] . "</td>";
-            echo "<td>" . $row["amount"] . "</td>";
-            echo "<td>" . $row["real_timestamp"] . "</td>";
+            $formatted_amount = '₱' . number_format($row["amount"], 2, '.', ','); // Assuming amount is in decimal format
+            echo "<td>" . $formatted_amount . "</td>";            echo "<td>" . $row["real_timestamp"] . "</td>";
             echo "</tr>";
           }
         } else {

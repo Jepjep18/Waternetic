@@ -26,7 +26,7 @@ $row = mysqli_fetch_array($result);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
@@ -44,13 +44,18 @@ $row = mysqli_fetch_array($result);
 
     <style>
         .custom-logo {
-            width: 30px; /* Adjust width as needed */
-            height: auto; /* Keeps aspect ratio */
-            margin-right: 10px; /* Space between logo and text */
-            vertical-align: middle; /* Aligns image with text */
+            width: 30px;
+            /* Adjust width as needed */
+            height: auto;
+            /* Keeps aspect ratio */
+            margin-right: 10px;
+            /* Space between logo and text */
+            vertical-align: middle;
+            /* Aligns image with text */
         }
     </style>
 </head>
+
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
@@ -65,23 +70,23 @@ $row = mysqli_fetch_array($result);
         <!-- Sidebar Start -->
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
-            <a href="cashier.php" class="navbar-brand mx-4 mb-3">
-                <h3 class="text-primary">
-                    <img src="./assets/img/finallogo.png" alt="My Logo" class="custom-logo">
-                    CASHIER
-                </h3>
-            </a>
+                <a href="cashier.php" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary">
+                        <img src="./assets/img/finallogo.png" alt="My Logo" class="custom-logo">
+                        CASHIER
+                    </h3>
+                </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
                         <img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                    <h6 class="mb-0"><?php echo $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname']; ?></h6>
+                        <h6 class="mb-0"><?php echo $row['firstname'] . ' ' . $row['middlename'] . ' ' . $row['lastname']; ?></h6>
                         <span>Admin</span>
                     </div>
                 </div>
-                
+
             </nav>
         </div>
         <!-- Sidebar End -->
@@ -179,96 +184,98 @@ $row = mysqli_fetch_array($result);
             <!-- Navbar End -->
 
             <?php
-$id = $_GET['id'];
+            $id = $_GET['id'];
 
-// Fetch payment service data from the 'payment_services' table based on the provided ID
-$query = "SELECT * FROM payment_services WHERE id = '$id'";
-$result = mysqli_fetch_array(mysqli_query($conn, $query));
+            // Fetch payment service data from the 'payment_services' table based on the provided ID
+            $query = "SELECT * FROM payment_services WHERE id = '$id'";
+            $result = mysqli_fetch_array(mysqli_query($conn, $query));
 
 
-?>
+            ?>
 
-<!-- Chart Start -->
-<style>
-    .custom-container {
-        width: 100%;
-        max-width: 1200px; /* Adjust the max-width as needed */
-        margin: 0 auto; /* Center the container */
-    }
-</style>
-<div class="container-fluid pt-4 px-4">
-    <div class="row g-4">
-        <div class="col-sm-12 col-md-6 col-xl-4 custom-container">
-            <div class="h-100 bg-light rounded p-4">
-                <div class="container">
-                    <div class="card mt-4">
-                        <div class="card-body">
-                            <form action="ordetailsubmit.php" method="POST">
-                                <div class="mb-3">
-                                    <label for="or-number" class="form-label">OR Number:</label>
-                                    <input type="text" id="or-number" name="or_number" class="form-control" required>
+            <!-- Chart Start -->
+            <style>
+                .custom-container {
+                    width: 100%;
+                    max-width: 1200px;
+                    /* Adjust the max-width as needed */
+                    margin: 0 auto;
+                    /* Center the container */
+                }
+            </style>
+            <div class="container-fluid pt-4 px-4">
+                <div class="row g-4">
+                    <div class="col-sm-12 col-md-6 col-xl-4 custom-container">
+                        <div class="h-100 bg-light rounded p-4">
+                            <div class="container">
+                                <div class="card mt-4">
+                                    <div class="card-body">
+                                        <form action="ordetailsubmit.php" method="POST">
+                                            <div class="mb-3">
+                                                <label for="or-number" class="form-label">OR Number:</label>
+                                                <input type="text" id="or-number" name="or_number" class="form-control" required>
+                                            </div>
+
+                                            <?php if ($result) : ?>
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="id" class="form-label">ID:</label>
+                                                        <input type="text" id="id" name="id" class="form-control" value="<?php echo $result['id']; ?>" readonly>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="name" class="form-label">Name:</label>
+                                                        <input type="text" id="name" name="name" class="form-control" value="<?php echo $result['firstname']; ?>" readonly>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="middle-name" class="form-label">Middle Name:</label>
+                                                        <input type="text" id="middle-name" name="middle_name" class="form-control" value="<?php echo $result['middlename']; ?>" readonly>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="last-name" class="form-label">Last Name:</label>
+                                                        <input type="text" id="last-name" name="last_name" class="form-control" value="<?php echo $result['lastname']; ?>" readonly>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="bill_type" class="form-label">Type of Payments:</label>
+                                                        <input type="text" id="bill_type" name="bill_type" class="form-control" value="<?php echo $result['bill_type']; ?>" readonly>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="block" class="form-label">Block:</label>
+                                                        <input type="text" id="block" name="block" class="form-control" value="<?php echo $result['block']; ?>" readonly>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="lot" class="form-label">Lot:</label>
+                                                        <input type="text" id="lot" name="lot" class="form-control" value="<?php echo $result['lot']; ?>" readonly>
+                                                    </div>
+                                                    <div class="col-md-6 mb-3">
+                                                        <label for="phase" class="form-label">Phase:</label>
+                                                        <input type="text" id="phase" name="phase" class="form-control" value="<?php echo $result['phase']; ?>" readonly>
+                                                    </div>
+                                                </div>
+
+                                                <div class="input-group">
+                                                    <span class="input-group-text">₱</span>
+                                                    <input type="text" id="amount" name="amount" class="form-control" value="<?php echo number_format($result['amount'], 2); ?>" readonly>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <input type="submit" value="Submit" class="btn btn-primary">
+                                        </form>
+                                    </div>
                                 </div>
-
-                                <?php if ($result) : ?>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="id" class="form-label">ID:</label>
-                                            <input type="text" id="id" name="id" class="form-control" value="<?php echo $result['id']; ?>" readonly>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="name" class="form-label">Name:</label>
-                                            <input type="text" id="name" name="name" class="form-control" value="<?php echo $result['firstname']; ?>" readonly>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="middle-name" class="form-label">Middle Name:</label>
-                                            <input type="text" id="middle-name" name="middle_name" class="form-control" value="<?php echo $result['middlename']; ?>" readonly>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="last-name" class="form-label">Last Name:</label>
-                                            <input type="text" id="last-name" name="last_name" class="form-control" value="<?php echo $result['lastname']; ?>" readonly>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="bill_type" class="form-label">Type of Payments:</label>
-                                            <input type="text" id="bill_type" name="bill_type" class="form-control" value="<?php echo $result['bill_type']; ?>" readonly>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="block" class="form-label">Block:</label>
-                                            <input type="text" id="block" name="block" class="form-control" value="<?php echo $result['block']; ?>" readonly>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="lot" class="form-label">Lot:</label>
-                                            <input type="text" id="lot" name="lot" class="form-control" value="<?php echo $result['lot']; ?>" readonly>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="phase" class="form-label">Phase:</label>
-                                            <input type="text" id="phase" name="phase" class="form-control" value="<?php echo $result['phase']; ?>" readonly>
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="amount" class="form-label">Amount:</label>
-                                        <input type="text" id="amount" name="amount" class="form-control" value="<?php echo $result['amount']; ?>" readonly>
-                                    </div>
-                                <?php endif; ?>
-
-                                <input type="submit" value="Submit" class="btn btn-primary">
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
 
 
 
@@ -281,7 +288,7 @@ $result = mysqli_fetch_array(mysqli_query($conn, $query));
                 <div class="bg-light rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">Your Site Name</a>, All Right Reserved. 
+                            &copy; <a href="#">Your Site Name</a>, All Right Reserved.
                         </div>
                         <div class="col-12 col-sm-6 text-center text-sm-end">
                             <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
