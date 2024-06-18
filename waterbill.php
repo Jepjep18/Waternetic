@@ -105,7 +105,7 @@ $previousReadingDate = $row_previous_reading['previous_reading_date'] ?? '';
     <?php include('includes/nav-user.php'); ?>
 
     <div class="container mt-5">
-        <h2 class="text-center mb-4">Water Bill Form</h2>
+        <h2 class="text-center mb-4">Water Bill Calculator</h2>
         <form id="waterBillForm" action="submitwaterconsumption.php" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-4">

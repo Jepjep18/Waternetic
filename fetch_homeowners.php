@@ -29,7 +29,7 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["lot"] . "</td>";
         echo "<td>" . $row["phase"] . "</td>";
         // Pass user ID to JavaScript function when button is clicked
-        echo "<td><a class='btn btn-primary' href='form_interface.php?user_id=" . $row["id"] . "'>Proceed</a></td>"; // Modified button to direct to form interface
+        echo "<td><button class='btn btn-primary' onclick='proceed({$row['id']})'>Proceed</button></td>";
         echo "</tr>";
     }
 } else {

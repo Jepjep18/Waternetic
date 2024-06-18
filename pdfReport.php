@@ -75,6 +75,18 @@ $rowsHeight = 0; // Track the total height of all rows
 
 if (mysqli_num_rows($result) > 0) {
     while ($rows = mysqli_fetch_array($result)) {
+        // Ensure the amount is numeric before formatting
+        if (is_numeric($rows['amount'])) {
+            $formattedAmount = number_format($rows['amount'], 2);
+            // Add amount to total sales
+            $totalSales += (float)$rows['amount'];
+        } else {
+            $formattedAmount = '0.00';
+        }
+
+        // Set the formatted amount back to the array
+        $rows['amount'] = $formattedAmount;
+
         // Calculate the height of the current row
         $rowHeight = 10; // Each row has a fixed height of 10 units
         
@@ -88,9 +100,6 @@ if (mysqli_num_rows($result) > 0) {
         
         // Add the row to the table
         $pdf->TableRow($rows);
-        
-        // Add amount to total sales
-        $totalSales += $rows['amount'];
     }
 } else {
     $pdf->Cell(0, 10, "No records found", 0, 1, 'C'); // Output a message if no records found and center align

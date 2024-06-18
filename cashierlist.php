@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Your head content here -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -65,7 +64,6 @@
           $row = mysqli_fetch_array($result);
         } else {
           // Handle the case when 'id' index is not set
-          // Redirect or display an error message
           echo "User ID is not set.";
           exit;
         }
@@ -77,7 +75,6 @@
         // Output data from each row
         if (mysqli_num_rows($result) > 0) {
           while ($row = mysqli_fetch_assoc($result)) {
-            $button_label = "Proceed";
             echo "<tr>";
             echo "<td>" . $row["firstname"] . "</td>";
             echo "<td>" . $row["middlename"] . "</td>";
@@ -87,8 +84,9 @@
             echo "<td>" . $row["lot"] . "</td>";
             echo "<td>" . $row["phase"] . "</td>";
             $formatted_amount = '₱' . number_format($row["amount"], 2, '.', ','); // Assuming amount is in decimal format
-            echo "<td>" . $formatted_amount . "</td>";            echo "<td>" . $row["real_timestamp"] . "</td>";
-            echo "<td><a href='ordetailss.php?id=" . $row['id'] . "'><button class='btn btn-primary'>" . $button_label . "</button></a></td>";
+            echo "<td>" . $formatted_amount . "</td>";
+            echo "<td>" . $row["real_timestamp"] . "</td>";
+            echo "<td><button class='btn btn-primary' data-bs-toggle='modal' data-bs-target='#paymentModal' data-id='" . $row['id'] . "'>Proceed</button></td>";
             echo "</tr>";
           }
         } else {
@@ -99,10 +97,32 @@
     </table>
   </div>
 
+  <!-- Modal -->
+  <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="paymentModalLabel">Original Receipt Numbering</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Payment Details Form -->
+          <form action="ordetailsubmit.php" method="POST" id="paymentForm">
+            <!-- Form content will be inserted dynamically via JavaScript -->
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" form="paymentForm" class="btn btn-primary">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- JavaScript to filter results dynamically -->
+  <!-- JavaScript to filter results dynamically and handle modal -->
   <script>
     // Function to filter the table rows based on search input
     function filterTable() {
@@ -133,6 +153,24 @@
     // Add event listeners to input fields for filtering
     document.getElementById('searchInput').addEventListener('input', filterTable);
     document.getElementById('billTypeInput').addEventListener('input', filterTable);
+
+    // Fetch payment details dynamically when modal is triggered
+    var paymentModal = document.getElementById('paymentModal');
+    paymentModal.addEventListener('show.bs.modal', function (event) {
+      var button = event.relatedTarget; // Button that triggered the modal
+      var id = button.getAttribute('data-id'); // Extract info from data-* attributes
+      var modalBody = paymentModal.querySelector('.modal-body form');
+
+      // Make AJAX request to fetch payment details
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'fetch_payment_details.php?id=' + id, true);
+      xhr.onload = function () {
+        if (this.status === 200) {
+          modalBody.innerHTML = this.responseText;
+        }
+      };
+      xhr.send();
+    });
   </script>
 </body>
 </html>
