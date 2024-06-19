@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 07, 2024 at 12:02 AM
+-- Generation Time: Jun 19, 2024 at 07:27 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -48,7 +48,8 @@ INSERT INTO `calculator_history` (`id`, `user_id`, `previous_reading`, `present_
 (3, 62, 2380, 2420, '2024-02-08', '2024-05-22', 40, '2024-05-22 13:58:09'),
 (4, 62, 2380, 2650, '2024-02-08', '2024-05-22', 270, '2024-05-22 14:03:35'),
 (5, 62, 2380, 6000, '2024-02-08', '2024-05-22', 3620, '2024-05-22 14:24:03'),
-(6, 101, 0, 20, '2024-04-22', '2024-05-22', 20, '2024-05-22 17:40:48');
+(6, 101, 0, 20, '2024-04-22', '2024-05-22', 20, '2024-05-22 17:40:48'),
+(7, 62, 2380, 2440, '2024-02-08', '2024-06-18', 60, '2024-06-18 14:22:59');
 
 -- --------------------------------------------------------
 
@@ -209,7 +210,13 @@ CREATE TABLE `notifications` (
 
 INSERT INTO `notifications` (`id`, `user_id`, `bill_type`, `message`, `created_at`) VALUES
 (4, 33, 'installation', 'Payment of ₱ 1000.00 has been received for OR Number: 5785.', '2024-05-22 10:50:54'),
-(5, 43, 'installation', 'Payment of ₱ 1000.00 has been received for OR Number: 8876.', '2024-05-22 15:22:28');
+(5, 43, 'installation', 'Payment of ₱ 1000.00 has been received for OR Number: 8876.', '2024-05-22 15:22:28'),
+(6, 17, 'water_bill', 'Payment of ₱ ₱217.00 has been received for OR Number: .', '2024-06-17 13:47:39'),
+(7, 18, 'water_bill', 'Payment of ₱ ₱217.00 has been received for OR Number: 52.', '2024-06-17 14:14:22'),
+(8, 20, 'water_bill', 'Payment of ₱ ₱1,128.00 has been received for OR Number: 53.', '2024-06-17 14:14:43'),
+(9, 22, 'water_bill', 'Payment of ₱ ₱1,128.00 has been received for OR Number: 55.', '2024-06-17 14:35:13'),
+(10, 24, 'installation', 'Payment of ₱ ₱1,234.00 has been received for OR Number: 56.', '2024-06-17 14:35:49'),
+(11, 25, 'water_bill', 'Payment of ₱ 1128.00 has been received for OR Number: 57.', '2024-06-17 14:36:14');
 
 -- --------------------------------------------------------
 
@@ -235,21 +242,12 @@ CREATE TABLE `or_details` (
 --
 
 INSERT INTO `or_details` (`or_number`, `name`, `middle_name`, `last_name`, `bill_type`, `block`, `lot`, `phase`, `amount`, `timestamp`) VALUES
-(3, 'Mary Jean', 'Balili', 'Arnado', 'installation', '2', '11', '2', '1000.00', '2024-05-20 03:17:42'),
-(12, 'user', 'user', 'user', 'installation', '2', '11', '2', '5000.00', '2024-02-05 12:20:04'),
-(19, 'larnec', 'can', 'canillo', 'water_bill', '2', '10', '2', '217.00', '2024-05-20 02:46:40'),
-(76, 'Mary Jean', 'Balili', 'Arnado', 'installation', '2', '11', '2', '1000.00', '2024-05-21 02:40:51'),
-(77, 'Mary Jean', 'Balili', 'Arnado', 'water_bill', '2', '11', '2', '406.30', '2024-03-13 05:51:11'),
-(123, 'user', 'user', 'user', 'installation', '2', '11', '2', '1111.00', '2024-02-07 05:04:44'),
-(654, 'Mary Jean', 'Balili', 'Arnado', 'water_bill', '2', '11', '2', '1128.00', '2024-05-20 04:20:32'),
-(786, 'Mary Jean', 'Balili', 'Arnado', 'transaction_fee', '2', '11', '2', '222.00', '2024-05-20 03:35:46'),
-(888, 'Mary Jean', 'Balili', 'Arnado', 'transaction_fee', '2', '11', '2', '222.00', '2024-05-20 03:34:00'),
-(1234, 'Mary Jean', 'Balili', 'Arnado', 'installation', '2', '11', '2', '1000.00', '2024-03-24 11:11:00'),
-(5785, 'Mary Jean', 'Balili', 'Arnado', 'installation', '2', '11', '2', '1000.00', '2024-05-22 10:50:54'),
-(8876, 'test', 'test', 'test', 'installation', '1', '1', '1', '1000.00', '2024-05-22 15:22:27'),
-(9877, 'Mary Jean', 'Balili', 'Arnado', 'installation', '2', '11', '2', '1000.00', '2024-05-20 03:32:05'),
-(9999, 'Mary Jean', 'Balili', 'Arnado', 'installation', '2', '11', '2', '1000.00', '2024-05-22 10:49:23'),
-(12312, 'James', 'Jecemeco', 'Tabilog', 'installation', '9', '19', '2', '1000.00', '2024-05-20 02:48:52');
+(1, 'larnec', 'can', 'canillo', 'water_bill', '2', '10', '2', '0.00', '2024-06-17 13:47:39'),
+(52, 'larnec', 'can', 'canillo', 'water_bill', '2', '10', '2', '0.00', '2024-06-17 14:14:22'),
+(53, 'Mary Jean', 'Balili', 'Arnado', 'water_bill', '2', '11', '2', '0.00', '2024-06-17 14:14:43'),
+(55, 'Mary Jean', 'Balili', 'Arnado', 'water_bill', '2', '11', '2', '0.00', '2024-06-17 14:35:13'),
+(56, 'Mary Jean', 'Balili', 'Arnado', 'installation', '2', '11', '2', '0.00', '2024-06-17 14:35:49'),
+(57, 'Mary Jean', 'Balili', 'Arnado', 'water_bill', '2', '11', '2', '1128.00', '2024-06-17 14:36:14');
 
 -- --------------------------------------------------------
 
@@ -280,14 +278,14 @@ CREATE TABLE `payment_services` (
 
 INSERT INTO `payment_services` (`id`, `customer_id`, `bill_type`, `firstname`, `middlename`, `lastname`, `block`, `lot`, `phase`, `amount`, `real_timestamp`, `status`, `mode_of_payment`, `uploaded_image`) VALUES
 (16, 63, 'water_bill', 'larnec', 'can', 'canillo', '2', '10', '2', '217.00', '2024-03-12 01:38:52', 1, 'GCash', ''),
-(17, 63, 'water_bill', 'larnec', 'can', 'canillo', '2', '10', '2', '217.00', '2024-03-12 01:45:24', 0, 'GCash', 'upload/Screenshot 2024-02-27 160709.png'),
-(18, 63, 'water_bill', 'larnec', 'can', 'canillo', '2', '10', '2', '217.00', '2024-03-12 01:52:34', 0, 'GCash', 'upload/Screenshot 2024-02-27 084026.png'),
+(17, 63, 'water_bill', 'larnec', 'can', 'canillo', '2', '10', '2', '217.00', '2024-03-12 01:45:24', 1, 'GCash', 'upload/Screenshot 2024-02-27 160709.png'),
+(18, 63, 'water_bill', 'larnec', 'can', 'canillo', '2', '10', '2', '217.00', '2024-03-12 01:52:34', 1, 'GCash', 'upload/Screenshot 2024-02-27 084026.png'),
 (19, 62, 'water_bill', 'Mary Jean', 'Balili', 'Arnado', '2', '11', '2', '1128.00', '2024-03-12 05:25:26', 1, 'PayMaya', 'upload/Screenshot 2024-02-29 150036.png'),
-(20, 62, 'water_bill', 'Mary Jean', 'Balili', 'Arnado', '2', '11', '2', '1128.00', '2024-03-12 05:25:59', 0, 'PayMaya', 'upload/Screenshot 2024-02-29 150036.png'),
+(20, 62, 'water_bill', 'Mary Jean', 'Balili', 'Arnado', '2', '11', '2', '1128.00', '2024-03-12 05:25:59', 1, 'PayMaya', 'upload/Screenshot 2024-02-29 150036.png'),
 (21, 62, 'water_bill', 'Mary Jean', 'Balili', 'Arnado', '2', '11', '2', '406.30', '2024-03-13 01:50:12', 1, 'GCash', 'upload/image-removebg-preview.png'),
-(22, 62, 'water_bill', 'Mary Jean', 'Balili', 'Arnado', '2', '11', '2', '1128.00', '2024-03-13 07:29:40', 0, 'GCash', 'upload/gcash logo.png'),
-(24, 62, 'installation', 'Mary Jean', 'Balili', 'Arnado', '2', '11', '2', '1234.00', '2024-03-13 07:32:07', 0, 'PayMaya', 'upload/428304660_3119531941516848_1219879730996329932_n-removebg-preview.png'),
-(25, 62, 'water_bill', 'Mary Jean', 'Balili', 'Arnado', '2', '11', '2', '1128.00', '2024-03-18 05:35:02', 0, 'GCash', 'upload/430900628_1299293347625044_3060712844270264991_n.png'),
+(22, 62, 'water_bill', 'Mary Jean', 'Balili', 'Arnado', '2', '11', '2', '1128.00', '2024-03-13 07:29:40', 1, 'GCash', 'upload/gcash logo.png'),
+(24, 62, 'installation', 'Mary Jean', 'Balili', 'Arnado', '2', '11', '2', '1234.00', '2024-03-13 07:32:07', 1, 'PayMaya', 'upload/428304660_3119531941516848_1219879730996329932_n-removebg-preview.png'),
+(25, 62, 'water_bill', 'Mary Jean', 'Balili', 'Arnado', '2', '11', '2', '1128.00', '2024-03-18 05:35:02', 1, 'GCash', 'upload/430900628_1299293347625044_3060712844270264991_n.png'),
 (26, 62, 'installation', 'Mary Jean', 'Balili', 'Arnado', '2', '11', '2', '1000.00', '2024-03-21 05:18:36', 0, 'GCash', 'upload/430900628_1299293347625044_3060712844270264991_n.png'),
 (27, 63, 'installation', 'larnec', 'can', 'canillo', '2', '10', '2', '2000.00', '2024-03-22 01:42:39', 0, 'GCash', 'upload/430900628_1299293347625044_3060712844270264991_n.png'),
 (28, 100, 'installation', 'James', 'Jecemeco', 'Tabilog', '9', '19', '2', '1000.00', '2024-03-22 06:16:10', 1, 'GCash', 'upload/430900628_1299293347625044_3060712844270264991_n.png'),
@@ -657,7 +655,7 @@ ALTER TABLE `water_consumptionn`
 -- AUTO_INCREMENT for table `calculator_history`
 --
 ALTER TABLE `calculator_history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `files`
@@ -693,13 +691,13 @@ ALTER TABLE `materials`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `or_details`
 --
 ALTER TABLE `or_details`
-  MODIFY `or_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12313;
+  MODIFY `or_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `payment_services`
