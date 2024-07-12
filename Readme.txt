@@ -1,3 +1,6 @@
+Visit here : http://vle.dcc.edu.ph/ite/waternetic/index.php
+
+
 Waternetic is an all-in-one digitalized water system to make transaction easier and faster. This Application aims to provide digital system in a private subdivision for smoother transaction than usual. Conserve energy and effort.
 
 
